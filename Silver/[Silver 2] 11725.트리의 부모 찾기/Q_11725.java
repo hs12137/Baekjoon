@@ -23,18 +23,18 @@ public class Q_11725 {
             map.put(num1, list1);
             map.put(num2, list2);
         }
-        Queue<Integer> queue = new LinkedList<>();
+        Stack<Integer> stack = new Stack<>();
         boolean[] visited = new boolean[n + 1];
-        queue.add(1);
+        stack.push(1);
         visited[1] = true;
-        while (!queue.isEmpty()) {
-            int node = queue.poll();
+        while (!stack.isEmpty()) {
+            int node = stack.pop();
             visited[node] = true;
-            List<Integer> list = map.get(node);
+            List<Integer> list = map.getOrDefault(node, new ArrayList<>());
             for(Integer i : list) {
                 if (!visited[i]) {
                     pNode[i] = node;
-                    queue.add(i);
+                    stack.push(i);
                 }
             }
         }
